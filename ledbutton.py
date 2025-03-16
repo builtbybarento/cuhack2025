@@ -1,8 +1,7 @@
+print("Pi Started! Let's save the world!")
+
 import rpi_gpio as GPIO  # Import the QNX Raspberry Pi GPIO module
 import time  # Import the time module for delays
-from rainbowhat import RainbowHat  # Import the Rainbow HAT library
-
-print("Pi Started! Let's save the world!")
 
 # GPIO pin assignments
 LED_C = 26
@@ -29,38 +28,16 @@ GPIO.output(LED_B, GPIO.LOW)
 GPIO.output(LED_A, GPIO.LOW)
 GPIO.output(BUZZER_PIN, GPIO.LOW)
 
-# Initialize Rainbow HAT LED strip
-ledstrip = RainbowHat.openLedStrip()
-ledstrip.setBrightness(31)  # Set brightness to max
-
-# Function to create rainbow effect
-def flash_rainbow():
-    rainbow = [0] * RainbowHat.LEDSTRIP_LENGTH
-    for i in range(len(rainbow)):
-        # Generate rainbow colors
-        rainbow[i] = RainbowHat.Color.HSVToColor(255, [i * 360.0 / RainbowHat.LEDSTRIP_LENGTH, 1.0, 1.0])
-    ledstrip.write(rainbow)
-
-def clear_rainbow():
-    ledstrip.clear()
-
 # Main loop
 while True:
     button_c_pressed = GPIO.input(BTN_C) == GPIO.LOW
     button_b_pressed = GPIO.input(BTN_B) == GPIO.LOW
     button_a_pressed = GPIO.input(BTN_A) == GPIO.LOW
 
-    # Control LEDs for button presses
+    # Control LEDs
     GPIO.output(LED_C, button_c_pressed)
     GPIO.output(LED_B, button_b_pressed)
     GPIO.output(LED_A, button_a_pressed)
-
-    # Flash Rainbow Lights when a button is pressed
-    if button_c_pressed or button_b_pressed or button_a_pressed:
-        flash_rainbow()  # Create the rainbow effect on button press
-        time.sleep(0.5)  # Keep rainbow effect for half a second
-        clear_rainbow()  # Clear rainbow effect
-        time.sleep(0.5)  # Keep lights off for half a second
 
     # Print button presses
     if button_c_pressed:
