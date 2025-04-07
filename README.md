@@ -68,5 +68,6 @@ This project exemplifies critical skills highly valued by recruiters and industr
 - 💡 CUHack 2025 Collaboration Team 
 
 ---
+Check out here: https://www.youtube.com/watch?v=B-NBiyx0jw8&t=80s
 
 🛠️ Built with passion, purpose, and a love for embedded innovation at **CUHack 2025** 🚀
